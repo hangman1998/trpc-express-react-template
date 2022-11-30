@@ -6,6 +6,7 @@ Requires node 18 (for global fetch).
 
 ```bash
 npm i
+npx prisma migrate dev --name init
 npm run dev
 ```
 
