@@ -1,7 +1,7 @@
 import { createTRPCProxyClient, httpBatchLink } from "@trpc/client"
 import fetch from "node-fetch"
 import type { AppRouter } from "../server/routers/_app"
-
+import { PORT, trpcApiEndpoint } from "../server/index"
 // polyfill
 global.fetch = fetch as any
 
@@ -10,7 +10,7 @@ async function main() {
 	const client = createTRPCProxyClient<AppRouter>({
 		links: [
 			httpBatchLink({
-				url: "http://localhost:2022/trpc",
+				url: `http://localhost:${PORT}${trpcApiEndpoint}`,
 			}),
 		],
 	})
