@@ -7,6 +7,7 @@ this is a trpc template using the below stack
 - prisma
 ### frontend
 - react
+- tailwind css
 - trpc-query
 
 ## Features
@@ -22,7 +23,7 @@ this is a trpc template using the below stack
 
 ```bash
 npm i
-npx prisma migrate dev --name "init"
+npx prisma migrate dev --name "init" # run this in server workspace
 npm run dev
 ```
 ## Building
