@@ -6,9 +6,7 @@ export const createContext = ({
 	req,
 	res,
 }: trpcExpress.CreateExpressContextOptions) => {
-	const prisma = new PrismaClient()
 	return {
-		prisma,
 		req,
 		res,
 	}

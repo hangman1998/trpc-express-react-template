@@ -1,5 +1,5 @@
 import { z } from "zod"
-import { publicProcedure, router } from "../trpc"
+import { publicProcedure, router } from "../globals"
 import { hi } from "./hi"
 
 // main router, each router is merged here

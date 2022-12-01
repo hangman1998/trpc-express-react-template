@@ -1,5 +1,5 @@
 import { z } from "zod"
-import { publicProcedure, router } from "../trpc"
+import { prisma, publicProcedure, router } from "../globals"
 
 export const hi = router({
 	createHi: publicProcedure
@@ -12,7 +12,7 @@ export const hi = router({
 		)
 		.output(z.string())
 		.query(async ({ ctx, input }) => {
-			await ctx.prisma.hi.create({
+			await prisma.hi.create({
 				data: { from: input.sender ?? "unknown", message: input.message },
 			})
 			return `Server🤵: Hi! ${input.sender}, your message was saved!`
@@ -24,6 +24,6 @@ export const hi = router({
 			})
 		)
 		.query(({ ctx, input }) =>
-			ctx.prisma.hi.findMany({ where: { from: input.from ?? "unknown" } })
+			prisma.hi.findMany({ where: { from: input.from ?? "unknown" } })
 		),
 })
