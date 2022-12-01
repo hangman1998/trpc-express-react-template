@@ -10,12 +10,12 @@ this is a trpc template using the below stack
 - trpc-query
 
 ## Features
-- using npm workspaces to setup the monorepo.
-- JWT Authentication implemented with `jsonwebtoken` and `bcrypt`.
-- RBAC Authorization using trpc `meta` and midlewares.
-- automatic openapi generation using `trpc-openapi`.
-- frontend using vite.
-- a node client for testing.
+- ✅ using npm workspaces to setup the monorepo.
+- ✅ JWT Authentication implemented with `jsonwebtoken` and `bcrypt`.
+- ✅ RBAC Authorization using trpc `meta` and midlewares.
+- ✅ automatic openapi generation using `trpc-openapi`.
+- ✅ frontend using vite.
+- ✅ a node client for testing.
 
 
 ## Development
