@@ -10,7 +10,7 @@ async function main() {
 	const client = createTRPCProxyClient<AppRouter>({
 		links: [
 			httpBatchLink({
-				url: `http://localhost:${PORT}${trpcApiEndpoint}`,
+				url: `http://localhost:2022/api/trpc`,
 			}),
 		],
 	})

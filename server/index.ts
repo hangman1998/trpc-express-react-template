@@ -25,7 +25,7 @@ const openApiDocument = generateOpenApiDocument(appRouter, {
 const main = async () => {
 	const app = express()
 	// setting up middle wares
-	app.use(cors())
+	app.use(cors({ credentials: true }))
 	app.use((req, _res, next) => {
 		// request logger
 		console.log("⬅️ ", req.method, req.path, req.body ?? req.query)
