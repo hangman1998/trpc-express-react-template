@@ -14,19 +14,7 @@ async function main() {
 			}),
 		],
 	})
-	console.log(
-		await client.hi.createHi.query({
-			sender: "yousef",
-			message: "server you better store this message or not!",
-		})
-	)
-	console.log(
-		await client.hi.createHi.query({
-			sender: "yousef",
-			message: "server you better store this new message or not!",
-		})
-	)
-	console.log(await client.hi.seeMessages.query({ from: "yousef" }))
+	console.log(await client.hi.welcome.query({}))
 }
 
 main()
