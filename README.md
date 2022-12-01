@@ -1,17 +1,30 @@
-# A minimal React tRPC example
+# trpc-template
+this is a trpc template using the below stack
+## Stack
+### Backend
+- express
+- trpc
+- prisma
+### frontend
+- react
+- trpc-query
 
-Requires node 18 (for global fetch).
+## Features
+- using npm workspaces to setup the monorepo.
+- JWT Authentication implemented with `jsonwebtoken` and `bcrypt`.
+- RBAC Authorization using trpc `meta` and midlewares.
+- automatic openapi generation using `trpc-openapi`.
+- frontend using vite.
+- a node client for testing.
 
-## Playing around
+
+## Development
 
 ```bash
 npm i
-npx prisma migrate dev --name init
+npx prisma migrate dev --name "init"
 npm run dev
 ```
-
-Try editing the ts files to see the type checking in action :)
-
 ## Building
 
 ```bash
