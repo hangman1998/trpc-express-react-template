@@ -1,29 +1,39 @@
 import { z } from "zod"
-import { prisma, publicProcedure, router } from "../globals"
+import { prisma, publicProcedure, rbacProcedure, router } from "../globals"
 
 export const hi = router({
-	createHi: publicProcedure
-		.meta({ openapi: { method: "POST", path: "/say-hi" } })
+	welcome: publicProcedure
+		.meta({ openapi: { method: "GET", path: "/welcome" } })
+		.input(z.object({}))
+		.output(z.string())
+		.query(() => "Welcome to server! 👋"),
+	createMessage: rbacProcedure
+		.meta({
+			openapi: { method: "POST", path: "/new-msg", protect: true },
+		})
 		.input(
 			z.object({
-				sender: z.string().nullish(),
 				message: z.string(),
 			})
 		)
 		.output(z.string())
-		.query(async ({ ctx, input }) => {
-			await prisma.hi.create({
-				data: { from: input.sender ?? "unknown", message: input.message },
+		.mutation(async ({ ctx, input }) => {
+			await prisma.message.create({
+				data: { message: input.message, senderId: ctx.user.id },
 			})
-			return `Server🤵: Hi! ${input.sender}, your message was saved!`
+			return `Server🤵: Hi! ${ctx.user.username}, your message was saved!`
 		}),
-	seeMessages: publicProcedure
-		.input(
-			z.object({
-				from: z.string().nullish(),
-			})
+	seeMessages: rbacProcedure
+		.input(z.object({}))
+		.meta({ openapi: { method: "GET", path: "/his", protect: true } })
+		.output(
+			z.array(
+				z.object({ id: z.number(), message: z.string(), createdAt: z.date() })
+			)
 		)
-		.query(({ ctx, input }) =>
-			prisma.hi.findMany({ where: { from: input.from ?? "unknown" } })
+		.query(({ ctx }) =>
+			prisma.message.findMany({
+				where: { senderId: ctx.user.id },
+			})
 		),
 })
